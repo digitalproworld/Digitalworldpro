@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital World Pro | AI-Powered Digital Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --teal:    #0a4d6e;
+  --teal-d:  #063548;
+  --teal-l:  #0d6e9a;
+  --cyan:    #00b4d8;
+  --cyan-l:  #48cae4;
+  --white:   #ffffff;
+  --offwhite:#f0f8ff;
+  --text:    #e8f4f8;
+  --muted:   #90c4d4;
+  --dark:    #041f2d;
+  --sans:    'Montserrat', sans-serif;
+  --body:    'Open Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--body); background: var(--teal-d); color: var(--white); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between;
+  background: rgba(6,53,72,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,180,216,0.15);
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-icon { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--cyan), var(--teal-l)); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.nav-name { font-family: var(--sans); font-size: 18px; font-weight: 800; color: var(--white); letter-spacing: 0.5px; }
+.nav-name span { color: var(--cyan); }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { background: var(--cyan); color: var(--dark); padding: 9px 22px; border-radius: 4px; font-size: 13px; font-weight: 700; text-decoration: none; letter-spacing: 0.5px; transition: all 0.2s; }
+.nav-cta:hover { background: var(--cyan-l); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--teal) 50%, var(--teal-l) 100%);
+}
+.hero-img {
+  position: absolute; inset: 0; z-index: 0;
+  background: url('hero.jpg') center/cover no-repeat;
+  opacity: 1;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, rgba(4,31,45,0.85) 0%, rgba(4,31,45,0.55) 35%, rgba(4,31,45,0.15) 70%, rgba(4,31,45,0) 100%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 700px; padding: 130px 80px 80px; }
+.hero-tag { font-family: var(--body); font-size: 13px; font-weight: 600; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-family: var(--sans); font-size: clamp(48px, 7vw, 86px); font-weight: 900; line-height: 1.0; letter-spacing: -1px; color: var(--white); margin-bottom: 20px; text-transform: uppercase; }
+.hero h2 { font-family: var(--body); font-size: clamp(16px, 2vw, 22px); font-weight: 300; color: var(--muted); line-height: 1.5; margin-bottom: 36px; font-style: italic; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-cyan { background: var(--cyan); color: var(--dark); padding: 15px 34px; border-radius: 4px; font-size: 14px; font-weight: 700; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
+.btn-cyan:hover { background: var(--cyan-l); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,180,216,0.3); }
+.btn-outline { background: transparent; color: var(--white); padding: 15px 34px; border-radius: 4px; font-size: 14px; font-weight: 600; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
+.btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+.hero-badge { position: absolute; bottom: 40px; right: 80px; z-index: 2; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); border: 1px solid rgba(0,180,216,0.2); border-radius: 8px; padding: 14px 20px; text-align: right; }
+.hero-badge-name { font-family: var(--sans); font-size: 16px; font-weight: 800; color: var(--white); }
+.hero-badge-tag { font-size: 11px; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase; }
+
+/* SERVICE SECTIONS */
+.service-section { display: flex; min-height: 500px; }
+.service-section.reverse { flex-direction: row-reverse; }
+.service-img { flex: 1; position: relative; overflow: hidden; min-height: 400px; }
+.service-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.85) saturate(1.1); transition: transform 0.5s; }
+.service-section:hover .service-img img { transform: scale(1.04); }
+.service-img-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,77,110,0.3), rgba(0,0,0,0.1)); }
+.service-content { flex: 1; padding: 60px 64px; display: flex; flex-direction: column; justify-content: center; }
+.service-content.bg-dark { background: var(--teal-d); }
+.service-content.bg-teal { background: var(--teal); }
+.service-content.bg-darker { background: var(--dark); }
+.service-icon { font-size: 32px; margin-bottom: 16px; display: inline-block; }
+.service-icon-star { width: 36px; height: 36px; margin-bottom: 16px; }
+.service-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
+.service-h { font-family: var(--sans); font-size: clamp(32px, 4vw, 52px); font-weight: 900; line-height: 1.05; text-transform: uppercase; color: var(--white); margin-bottom: 20px; letter-spacing: -0.5px; }
+.service-p { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 420px; font-weight: 300; margin-bottom: 28px; }
+.service-p strong { color: var(--white); font-weight: 600; }
+.service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.service-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; padding: 5px 12px; border-radius: 3px; background: rgba(0,180,216,0.12); color: var(--cyan); border: 1px solid rgba(0,180,216,0.2); }
+.service-link { font-size: 13px; font-weight: 700; color: var(--cyan); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+.service-link:hover { gap: 14px; }
+
+/* DIVIDER */
+.section-divider { height: 4px; background: linear-gradient(90deg, var(--teal-d), var(--cyan), var(--teal-d)); }
+
+/* STATS BAND */
+.stats-band { background: var(--dark); padding: 60px 48px; }
+.stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+.stat-item { text-align: center; padding: 20px; border-right: 1px solid rgba(255,255,255,0.06); }
+.stat-item:last-child { border-right: none; }
+.stat-val { font-family: var(--sans); font-size: 48px; font-weight: 900; color: var(--cyan); line-height: 1; margin-bottom: 8px; letter-spacing: -2px; }
+.stat-lbl { font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+
+/* CONNECT SECTION */
+.connect-section {
+  padding: 100px 48px; text-align: center;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--teal) 50%, var(--teal-l) 100%);
+  position: relative; overflow: hidden;
+}
+.connect-section::before { content:''; position:absolute; inset:0; display:none; }
+.connect-content { position: relative; z-index: 1; }
+.connect-h { font-family: var(--sans); font-size: clamp(36px, 6vw, 72px); font-weight: 900; text-transform: uppercase; color: var(--white); letter-spacing: -1px; margin-bottom: 48px; line-height: 1; }
+.connect-h span { color: var(--cyan); }
+.connect-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; }
+.connect-block { }
+.connect-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 12px; }
+.connect-item { font-size: 15px; color: var(--text); font-weight: 300; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.connect-item a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+.connect-item a:hover { color: var(--cyan); }
+.connect-cta-row { margin-top: 48px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* FORM SECTION */
+.form-section { background: var(--teal-d); padding: 80px 48px; }
+.form-inner { max-width: 700px; margin: 0 auto; }
+.form-title { font-family: var(--sans); font-size: 36px; font-weight: 900; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+.form-sub { font-size: 14px; color: var(--muted); margin-bottom: 36px; }
+.form-row { display: flex; gap: 16px; margin-bottom: 16px; }
+.form-row .fg { flex: 1; }
+.fg { margin-bottom: 16px; }
+.fg label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+.fg input, .fg select, .fg textarea {
+  width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(0,180,216,0.2);
+  border-radius: 4px; padding: 12px 16px; color: var(--white); font-family: var(--body);
+  font-size: 14px; outline: none; transition: border-color 0.2s;
+}
+.fg input::placeholder, .fg textarea::placeholder { color: rgba(255,255,255,0.2); }
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--cyan); }
+.fg select option { background: var(--teal-d); }
+.fg textarea { resize: vertical; min-height: 100px; }
+.form-submit { background: var(--cyan); color: var(--dark); border: none; padding: 15px 40px; border-radius: 4px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: var(--sans); letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
+.form-submit:hover { background: var(--cyan-l); transform: translateY(-1px); }
+.form-note { font-size: 12px; color: var(--muted); margin-top: 12px; }
+.success-msg { display: none; background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.3); border-radius: 6px; padding: 16px; color: var(--cyan); font-size: 14px; font-weight: 600; margin-top: 16px; text-align: center; }
+
+/* FOOTER */
+footer { background: var(--dark); border-top: 1px solid rgba(0,180,216,0.1); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-brand { display: flex; align-items: center; gap: 9px; }
+.footer-icon { width: 28px; height: 28px; border-radius: 6px; background: linear-gradient(135deg, var(--cyan), var(--teal-l)); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.footer-name { font-family: var(--sans); font-size: 15px; font-weight: 800; color: var(--white); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cyan); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+/* WA */
+
+@media(max-width:800px){
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 120px 24px 60px; }
+  .hero-badge { display: none; }
+  .service-section, .service-section.reverse { flex-direction: column; }
+  .service-content { padding: 40px 28px; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .connect-grid { grid-template-columns: 1fr; }
+  footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+.hero-tag    { animation: fadeUp 0.6s ease 0.1s both; }
+.hero h1     { animation: fadeUp 0.7s ease 0.2s both; }
+.hero h2     { animation: fadeUp 0.6s ease 0.35s both; }
+.hero-btns   { animation: fadeUp 0.6s ease 0.5s both; }
+</style>
+</head>
+<body>
+
+<!-- WA -->
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <img src="1000064432.jpg" alt="Digital World Pro" style="height:40px;width:40px;border-radius:8px;object-fit:cover;"/>
+    <span class="nav-name">Digital World <span>Pro</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#stats">Results</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get Free Quote</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">⚡ Benefit from our tried and tested solutions</div>
+    <h1>Grow Your<br/>Business</h1>
+    <h2>with AI-powered digital strategies<br/>that work</h2>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-cyan">Get Free Quote →</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <div class="hero-badge-name">Digital World Pro</div>
+    <div class="hero-badge-tag">AI-Powered Agency</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band" id="stats">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-val">10x</div><div class="stat-lbl">Faster Delivery</div></div>
+    <div class="stat-item"><div class="stat-val">50%</div><div class="stat-lbl">Lower Cost</div></div>
+    <div class="stat-item"><div class="stat-val">24/7</div><div class="stat-lbl">AI Support</div></div>
+    <div class="stat-item"><div class="stat-val">20+</div><div class="stat-lbl">Services</div></div>
+  </div>
+</div>
+
+<div id="services"></div>
+
+<!-- SERVICE 1 — WEBSITE DEVELOPMENT -->
+<div class="section-divider"></div>
+<div class="service-section">
+  <div class="service-img">
+    <img src="webdev.webp" alt="Website Development" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);"/>
+    <div class="service-img-overlay"></div>
+  </div>
+  <div class="service-content bg-teal">
+    <div class="service-label">✦ Service 01</div>
+    <h2 class="service-h">Website<br/>Development</h2>
+    <p class="service-p">At Digital World Pro, we specialize in <strong>creating custom websites</strong> that are tailored to your unique business needs, ensuring responsive designs that enhance user experience across all devices.</p>
+    <div class="service-tags">
+      <span class="service-tag">Landing Pages</span>
+      <span class="service-tag">Business Sites</span>
+      <span class="service-tag">E-Commerce</span>
+      <span class="service-tag">WordPress</span>
+    </div>
+    <a href="#contact" class="service-link">Get Started →</a>
+  </div>
+</div>
+
+<!-- SERVICE 2 — AI AUTOMATION -->
+<div class="section-divider"></div>
+<div class="service-section reverse">
+  <div class="service-img">
+    <img src="1000064650.jpg" alt="AI Automation" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);"/>
+    <div class="service-img-overlay"></div>
+  </div>
+  <div class="service-content bg-dark">
+    <div class="service-label">✦ Service 02</div>
+    <h2 class="service-h">AI<br/>Automation</h2>
+    <p class="service-p">At Digital World Pro, we specialize in <strong>AI automation and chatbots</strong> that seamlessly integrate into your business, enhancing efficiency and customer interaction to provide an optimal experience.</p>
+    <div class="service-tags">
+      <span class="service-tag">Workflow Automation</span>
+      <span class="service-tag">AI Chatbots</span>
+      <span class="service-tag">Integration</span>
+    </div>
+    <a href="#contact" class="service-link">Get Started →</a>
+  </div>
+</div>
+
+<!-- SERVICE 3 — CRM -->
+<div class="section-divider"></div>
+<div class="service-section">
+  <div class="service-img">
+    <img src="1000064648.jpg" alt="CRM Solutions" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);"/>
+    <div class="service-img-overlay"></div>
+  </div>
+  <div class="service-content bg-teal">
+    <div class="service-label">✦ Service 03</div>
+    <h2 class="service-h">CRM<br/>Solutions</h2>
+    <p class="service-p">Enhance your customer relationships with our <strong>tailored CRM tools</strong>, designed to streamline your communication and foster meaningful connections. Let us help you manage interactions effectively.</p>
+    <div class="service-tags">
+      <span class="service-tag">HubSpot Setup</span>
+      <span class="service-tag">Custom CRM</span>
+      <span class="service-tag">Sales Pipeline</span>
+    </div>
+    <a href="#contact" class="service-link">Get Started →</a>
+  </div>
+</div>
+
+<!-- SERVICE 4 — APP DEVELOPMENT -->
+<div class="section-divider"></div>
+<div class="service-section reverse">
+  <div class="service-img">
+    <img src="1000064647.jpg" alt="App Development" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);"/>
+    <div class="service-img-overlay"></div>
+  </div>
+  <div class="service-content bg-darker">
+    <div class="service-label">✦ Service 04</div>
+    <h2 class="service-h">App<br/>Development</h2>
+    <p class="service-p">At Digital World Pro, we create <strong>innovative mobile and web applications</strong> tailored to your brand's needs, ensuring an engaging user experience that drives results and enhances functionality.</p>
+    <div class="service-tags">
+      <span class="service-tag">Web Apps</span>
+      <span class="service-tag">Mobile Apps</span>
+      <span class="service-tag">SaaS Tools</span>
+    </div>
+    <a href="#contact" class="service-link">Get Started →</a>
+  </div>
+</div>
+
+<!-- SERVICE 5 — DIGITAL MARKETING -->
+<div class="section-divider"></div>
+<div class="service-section">
+  <div class="service-img">
+    <img src="1000064646.jpg" alt="Digital Marketing" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);"/>
+    <div class="service-img-overlay"></div>
+  </div>
+  <div class="service-content bg-teal">
+    <div class="service-label">✦ Service 05</div>
+    <h2 class="service-h">Digital Marketing<br/>Strategies</h2>
+    <p class="service-p">At Digital World Pro, we specialize in driving <strong>targeted traffic</strong> and enhancing engagement through innovative digital marketing and content creation strategies tailored to meet your business goals — including blog content, ebooks, and online courses.</p>
+    <div class="service-tags">
+      <span class="service-tag">SEO</span>
+      <span class="service-tag">Social Media</span>
+      <span class="service-tag">Email Marketing</span>
+      <span class="service-tag">Content Creation</span>
+      <span class="service-tag">Ebooks & Courses</span>
+      <span class="service-tag">Ad Copy</span>
+    </div>
+    <a href="#contact" class="service-link">Get Started →</a>
+  </div>
+</div>
+
+<!-- SERVICE 6 — BRAND IDENTITY -->
+<div class="section-divider"></div>
+<div class="service-section reverse">
+  <div class="service-img">
+    <img src="1000064644.jpg" alt="Brand Identity" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);"/>
+    <div class="service-img-overlay"></div>
+  </div>
+  <div class="service-content bg-dark">
+    <div class="service-label">✦ Service 06</div>
+    <h2 class="service-h">Brand<br/>Identity</h2>
+    <p class="service-p">At Digital World Pro, we specialize in crafting <strong>unique brand identities</strong> that resonate with your audience and elevate your business. Let us help you stand out in the digital landscape.</p>
+    <div class="service-tags">
+      <span class="service-tag">Logo Design</span>
+      <span class="service-tag">Brand Kit</span>
+      <span class="service-tag">Style Guide</span>
+    </div>
+    <a href="#contact" class="service-link">Get Started →</a>
+  </div>
+</div>
+
+<!-- SERVICE 7 — BUSINESS & STRATEGY -->
+<div class="section-divider"></div>
+<div class="service-section">
+  <div class="service-img">
+    <img src="1000064652.jpg" alt="Business & Strategy" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);"/>
+    <div class="service-img-overlay"></div>
+  </div>
+  <div class="service-content bg-teal">
+    <div class="service-label">✦ Service 07</div>
+    <h2 class="service-h">Business &amp;<br/>Strategy</h2>
+    <p class="service-p">We help you <strong>plan, position, and grow</strong> with clear business strategy — business plans, market research, financial projections, investor-ready pitch decks, and high-converting sales funnels that turn ideas into results.</p>
+    <div class="service-tags">
+      <span class="service-tag">Business Plans</span>
+      <span class="service-tag">Pitch Decks</span>
+      <span class="service-tag">Sales Funnels</span>
+      <span class="service-tag">Market Research</span>
+      <span class="service-tag">Financial Projections</span>
+    </div>
+    <a href="#contact" class="service-link">Get Started →</a>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- CONNECT SECTION -->
+<section class="connect-section" id="contact">
+  <div class="connect-content">
+    <h2 class="connect-h">Connect<br/>With <span>Us</span></h2>
+    <div class="connect-grid">
+      <div class="connect-block">
+        <div class="connect-label">📍 Address</div>
+        <div class="connect-item">1869 Emerald Dr</div>
+        <div class="connect-item">Orefield, PA 18069</div>
+        <div class="connect-item">Remote & In-Person Services</div>
+      </div>
+      <div class="connect-block">
+        <div class="connect-label">📞 Contact</div>
+        <div class="connect-item"><a href="tel:+14842401582">(484) 240-1582</a></div>
+        <div class="connect-item"><a href="mailto:DigitalworldPro@outlook.com">DigitalworldPro@outlook.com</a></div>
+      </div>
+    </div>
+    <div class="connect-cta-row">
+      <a href="#form" class="btn-cyan">Send Us a Message →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="form">
+  <div class="form-inner">
+    <div class="form-title">Get a Free Quote</div>
+    <div class="form-sub">Tell us about your project and we'll get back to you within 24 hours.</div>
+    <form id="contactForm" action="https://formspree.io/f/mnjrwvwa" method="POST">
+      <div class="form-row">
+        <div class="fg"><label>Your Name</label><input name="name" placeholder="John Smith" required/></div>
+        <div class="fg"><label>Email</label><input name="email" type="email" placeholder="john@email.com" required/></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Phone</label><input name="phone" placeholder="(123) 456-7890"/></div>
+        <div class="fg"><label>Service Needed</label>
+          <select name="service">
+            <option value="">Select a service</option>
+            <option>Website Development</option>
+            <option>AI Automation</option>
+            <option>CRM Solutions</option>
+            <option>App Development</option>
+            <option>Digital Marketing</option>
+            <option>Brand Identity</option>
+            <option>WordPress Development</option>
+            <option>Content Creation</option>
+            <option>Multiple Services</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Project Details</label><textarea name="message" placeholder="Tell us about your project, goals and timeline..."></textarea></div>
+      <button type="submit" class="form-submit">Send Message →</button>
+      <p class="form-note">🔒 Free consultation · No commitment · Reply within 24hrs</p>
+    </form>
+    <div class="success-msg" id="successMsg">✅ Message sent! We'll be in touch within 24 hours.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="1000064432.jpg" alt="Digital World Pro" style="height:32px;width:32px;border-radius:6px;object-fit:cover;"/>
+    <span class="footer-name">Digital World Pro</span>
+  </div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#stats">Results</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Digital World Pro · AI-Powered Digital Agency</div>
+</footer>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.form-submit');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    const res = await fetch(this.action, { method:'POST', body:new FormData(this), headers:{'Accept':'application/json'} });
+    if (res.ok) { this.style.display='none'; document.getElementById('successMsg').style.display='block'; }
+    else { btn.textContent='Error — please email us'; btn.style.background='#e11d48'; btn.disabled=false; }
+  } catch { btn.textContent='Error — please email us'; btn.style.background='#e11d48'; btn.disabled=false; }
+});
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 68, behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
