@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>West End Cuts — Premier Barbershop · Allentown, PA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f0d0b;--bone:#f0ebe3;--gold:#c49a3c;--gold2:#e8c96a;--rust:#8b3a2a;--mid:#5a5043;--light:#d8d1c5;--white:#faf8f5}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--bone);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;background:linear-gradient(to bottom,rgba(15,13,11,.96),transparent);transition:background .4s}
+nav.scrolled{background:rgba(15,13,11,.98);border-bottom:1px solid rgba(196,154,60,.15)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.12em;color:var(--gold);text-decoration:none}
+.nav-logo span{color:var(--bone)}
+.nav-links{display:flex;gap:2.4rem;list-style:none}
+.nav-links a{color:var(--light);text-decoration:none;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-book{background:var(--gold);color:var(--ink);padding:.6rem 1.6rem;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:background .2s}
+.nav-book:hover{background:var(--gold2)}
+.hamburger{display:none;background:none;border:none;cursor:pointer}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--bone);margin:5px 0}
+
+/* HERO */
+.hero{position:relative;height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(105deg,rgba(15,13,11,.88) 40%,rgba(15,13,11,.3) 100%),url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80&fit=crop') center/cover no-repeat}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 45%,rgba(196,154,60,.06) 45%,rgba(196,154,60,.06) 55%,transparent 55%)}
+.hero-content{position:relative;z-index:2;padding:0 4rem;max-width:820px}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;display:flex;align-items:center;gap:1rem}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold)}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,9vw,8.5rem);line-height:.92;letter-spacing:.02em;color:var(--white);margin-bottom:.2em}
+.hero h1 em{font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:.92em}
+.hero-sub{font-size:1.05rem;line-height:1.7;color:var(--light);max-width:440px;margin:1.6rem 0 2.8rem}
+.hero-cta{display:flex;gap:1.2rem;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--ink);padding:1rem 2.4rem;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;text-decoration:none;display:inline-block;transition:background .2s,transform .15s}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(196,154,60,.5);color:var(--gold);padding:1rem 2.4rem;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold2)}
+.hero-stats{position:absolute;bottom:3rem;right:4rem;display:flex;gap:3rem;z-index:2}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.stat-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-top:.3rem}
+.pole-line{position:absolute;right:0;top:0;bottom:0;width:6px;background:repeating-linear-gradient(160deg,var(--rust) 0,var(--rust) 14px,var(--white) 14px,var(--white) 22px,#1a5cb0 22px,#1a5cb0 36px,var(--white) 36px,var(--white) 44px);opacity:.75}
+
+/* MARQUEE */
+.marquee-strip{background:var(--gold);color:var(--ink);overflow:hidden;padding:.9rem 0;display:flex}
+.marquee-inner{display:flex;gap:3rem;animation:marquee 24s linear infinite;white-space:nowrap}
+.marquee-inner span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.14em;display:flex;align-items:center;gap:1.2rem}
+.marquee-inner span::before{content:'✦';opacity:.6}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* GOOGLE BADGE BAR */
+.g-badge-bar{background:#141210;padding:1.2rem 4rem;display:flex;align-items:center;gap:2.5rem;border-bottom:1px solid rgba(196,154,60,.12);flex-wrap:wrap}
+.g-badge{display:flex;align-items:center;gap:1rem}
+.g-logo{display:flex;gap:2px}
+.gc{font-family:Arial,sans-serif;font-size:.95rem;font-weight:700}
+.gc:nth-child(1){color:#4285F4}.gc:nth-child(2){color:#EA4335}.gc:nth-child(3){color:#FBBC05}.gc:nth-child(4){color:#4285F4}.gc:nth-child(5){color:#34A853}.gc:nth-child(6){color:#EA4335}
+.g-stars-row{display:flex;align-items:center;gap:.5rem}
+.g-stars{color:#FBBC05;font-size:1rem;letter-spacing:1px}
+.g-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);font-weight:600}
+.g-count{font-size:.75rem;color:var(--mid)}
+.g-badge-info{font-size:.8rem;color:var(--mid);line-height:1.6}
+.g-badge-info strong{color:var(--bone);font-weight:400}
+.pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(196,154,60,.08);border:1px solid rgba(196,154,60,.25);padding:.35rem .9rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;min-height:80vh}
+.about-img{position:relative;overflow:hidden}
+.about-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) contrast(1.05);transition:transform 6s ease}
+.about-img:hover img{transform:scale(1.04)}
+.about-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,var(--ink))}
+.about-img::before{content:'';position:absolute;top:2rem;left:2rem;right:-1.5rem;bottom:-1.5rem;border:1px solid var(--gold);z-index:1;pointer-events:none;opacity:.35}
+.about-text{padding:6rem 5rem;display:flex;flex-direction:column;justify-content:center;background:#141210}
+.section-eyebrow{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.about-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3.4rem);font-weight:300;line-height:1.2;color:var(--white);margin-bottom:1.6rem}
+.about-text h2 strong{font-weight:600;color:var(--gold)}
+.about-text p{font-size:.93rem;line-height:1.85;color:var(--light);margin-bottom:1.1rem;max-width:460px}
+.about-divider{width:40px;height:2px;background:var(--gold);margin:1.8rem 0}
+.about-detail{display:flex;align-items:center;gap:.7rem;font-size:.82rem;color:var(--mid);margin-top:.5rem}
+.about-detail a{color:var(--gold);text-decoration:none}
+
+/* SERVICES with photos */
+.services{padding:7rem 4rem;background:#0f0d0b}
+.section-header{text-align:center;margin-bottom:4rem}
+.section-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,5rem);letter-spacing:.06em;color:var(--white);line-height:1}
+.section-header h2 span{color:var(--gold)}
+.section-header p{font-size:.85rem;color:var(--mid);margin-top:.8rem;letter-spacing:.06em}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1140px;margin:0 auto}
+.service-card{background:#161310;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.service-card:hover .svc-img img{transform:scale(1.07)}
+.svc-img{height:220px;overflow:hidden;position:relative;flex-shrink:0}
+.svc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%) contrast(1.05) brightness(.9);transition:transform .55s ease}
+.svc-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(22,19,16,.95) 0%,rgba(22,19,16,.2) 60%,transparent 100%)}
+.svc-body{padding:1.8rem 2rem 2rem;flex:1;display:flex;flex-direction:column;border-top:2px solid transparent;transition:border-color .3s}
+.service-card:hover .svc-body{border-top-color:var(--gold)}
+.service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--white);margin-bottom:.55rem}
+.service-card p{font-size:.85rem;line-height:1.75;color:var(--mid);margin-bottom:1.4rem;flex:1}
+.service-price{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em;color:var(--gold)}
+.service-price small{font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;color:var(--mid);text-transform:uppercase;margin-left:.35rem}
+
+/* GALLERY */
+.gallery{padding:5rem 0;background:#0c0a08}
+.gallery-header{padding:0 4rem 2.5rem}
+.gallery-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,4vw,4rem);color:var(--white);letter-spacing:.06em}
+.gallery-header h2 span{color:var(--gold)}
+.cuts-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:240px 240px;gap:3px}
+.cut-item{overflow:hidden;position:relative}
+.cut-item.wide{grid-column:span 2}
+.cut-item img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%) contrast(1.08);transition:transform .5s ease,filter .4s}
+.cut-item:hover img{transform:scale(1.07);filter:grayscale(0%)}
+.cut-label{position:absolute;bottom:0;left:0;right:0;padding:1.4rem 1.2rem .9rem;background:linear-gradient(to top,rgba(15,13,11,.9) 50%,transparent);transform:translateY(100%);transition:transform .3s}
+.cut-item:hover .cut-label{transform:translateY(0)}
+.cut-label span{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+/* BARBERS */
+.barbers{padding:7rem 4rem;background:#141210}
+.barbers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1000px;margin:3rem auto 0}
+.barber-card{position:relative;overflow:hidden}
+.barber-img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:grayscale(25%);transition:filter .4s,transform .5s;display:block}
+.barber-card:hover .barber-img{filter:grayscale(0%);transform:scale(1.04)}
+.barber-info{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 1.6rem 1.8rem;background:linear-gradient(to top,rgba(15,13,11,.97) 60%,transparent);transform:translateY(30%);transition:transform .35s}
+.barber-card:hover .barber-info{transform:translateY(0)}
+.barber-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--white)}
+.barber-role{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:.3rem;display:block}
+.barber-spec{font-size:.8rem;color:var(--mid);margin-top:.6rem;opacity:0;transition:opacity .3s .1s;line-height:1.5}
+.barber-card:hover .barber-spec{opacity:1}
+
+/* GOOGLE REVIEWS */
+.reviews{padding:7rem 4rem;background:#0f0d0b;position:relative;overflow:hidden}
+.reviews::before{content:'"';position:absolute;top:1rem;left:3rem;font-family:'Cormorant Garamond',serif;font-size:28rem;line-height:1;color:rgba(196,154,60,.04);pointer-events:none}
+.reviews-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;flex-wrap:wrap;gap:1.5rem}
+.reviews-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,4vw,4rem);color:var(--white);letter-spacing:.06em;line-height:1}
+.reviews-header h2 span{color:var(--gold)}
+.google-overall{display:flex;align-items:center;gap:1.2rem;background:#161310;padding:1rem 1.6rem;border:1px solid rgba(196,154,60,.2)}
+.google-overall .big-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--gold);line-height:1}
+.google-overall .stars-stack{display:flex;flex-direction:column;gap:.2rem}
+.google-overall .rev-count{font-size:.72rem;color:var(--mid);letter-spacing:.1em}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;position:relative;z-index:1}
+.review-card{background:#141210;padding:2.2rem 2rem;position:relative}
+.review-top{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem}
+.reviewer-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--bone);flex-shrink:0}
+.reviewer-info{flex:1}
+.reviewer-name{font-size:.9rem;color:var(--bone);font-weight:400}
+.review-date{font-size:.7rem;color:var(--mid);margin-top:.15rem}
+.review-stars{color:#FBBC05;font-size:.85rem;letter-spacing:1px;margin-bottom:.8rem}
+.review-text{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;line-height:1.7;color:var(--bone)}
+.google-badge-corner{position:absolute;top:1.2rem;right:1.2rem;display:flex;align-items:center;gap:2px;opacity:.4}
+.google-badge-corner .gc{font-size:.6rem}
+.reviews-cta{text-align:center;margin-top:2.5rem}
+.reviews-cta a{color:var(--gold);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(196,154,60,.35);padding-bottom:2px;transition:border-color .2s}
+.reviews-cta a:hover{border-color:var(--gold)}
+
+/* BOOKING */
+.booking{padding:7rem 4rem;background:linear-gradient(135deg,#1a1410 0%,#0f0d0b 60%,#1c1205 100%);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;position:relative}
+.booking::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.booking-text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,5rem);letter-spacing:.04em;color:var(--white);line-height:1;margin-bottom:1.2rem}
+.booking-text h2 span{color:var(--gold)}
+.booking-text p{font-size:.93rem;line-height:1.8;color:var(--light);margin-bottom:2rem;max-width:400px}
+.booking-phone{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--gold);text-decoration:none;display:block;margin-bottom:1.4rem}
+.booking-right{display:flex;flex-direction:column;gap:2.5rem}
+.booking-hours h4,.find-us-head{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.hours-row{display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid rgba(90,80,67,.3);font-size:.88rem;color:var(--light)}
+.hours-row:last-child{border-bottom:none}
+.hours-row .day{color:var(--mid);font-size:.8rem;letter-spacing:.08em}
+.hours-row.closed .time{color:var(--mid);font-style:italic}
+
+/* MAP */
+.map-address-bar{background:#141210;padding:1.1rem 4rem;display:flex;align-items:center;gap:2rem;border-top:1px solid rgba(196,154,60,.1);flex-wrap:wrap}
+.map-address-bar .addr{font-size:.86rem;color:var(--light)}
+.dir-btn{font-size:.76rem;color:var(--gold);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(196,154,60,.3);padding:.4rem 1rem;transition:border-color .2s}
+.dir-btn:hover{border-color:var(--gold)}
+.map-embed{border:0;width:100%;height:360px;filter:grayscale(25%) contrast(1.1) brightness(.85);display:block}
+
+/* FOOTER */
+footer{background:#080706;padding:5rem 4rem 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem}
+.footer-brand .nav-logo{display:block;margin-bottom:1.2rem;font-size:2rem}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--mid);line-height:1.6;max-width:240px}
+.footer-col h4{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.65rem}
+.footer-col a{color:var(--mid);text-decoration:none;font-size:.86rem;transition:color .2s}
+.footer-col a:hover{color:var(--bone)}
+.footer-col p{color:var(--mid);font-size:.86rem;line-height:1.7}
+.footer-bottom{border-top:1px solid #1e1a16;padding-top:1.8rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.73rem;color:#3a3328;letter-spacing:.08em}
+.footer-social{display:flex;gap:1.2rem}
+.footer-social a{width:36px;height:36px;border:1px solid #2a251f;display:flex;align-items:center;justify-content:center;color:var(--mid);font-size:.75rem;text-decoration:none;transition:border-color .2s,color .2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+
+/* DWP BADGE */
+.dwp-badge{position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;background:rgba(15,13,11,.95);border:1px solid rgba(196,154,60,.4);padding:.6rem 1.1rem;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:border-color .2s,color .2s}
+.dwp-badge:hover{border-color:var(--gold);color:var(--gold)}
+.dwp-badge span{color:var(--gold)}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.8rem}
+  .nav-links,.nav-book{display:none}
+  .hamburger{display:block}
+  .hero-content{padding:0 1.8rem}
+  .hero-stats{display:none}
+  .pole-line{display:none}
+  .g-badge-bar{padding:1rem 1.8rem;gap:1.2rem}
+  .about{grid-template-columns:1fr}
+  .about-img{height:55vw}
+  .about-img::before{display:none}
+  .about-text{padding:3.5rem 2rem}
+  .services{padding:4rem 1.8rem}
+  .services-grid{grid-template-columns:1fr}
+  .gallery-header{padding:0 1.8rem 2rem}
+  .cuts-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .cut-item.wide{grid-column:span 1}
+  .cut-item{height:200px}
+  .barbers{padding:4rem 1.8rem}
+  .barbers-grid{grid-template-columns:1fr;max-width:400px}
+  .reviews{padding:4rem 1.8rem}
+  .reviews-grid{grid-template-columns:1fr}
+  .reviews-header{flex-direction:column;align-items:flex-start}
+  .booking{grid-template-columns:1fr;padding:4rem 1.8rem;gap:3rem}
+  .map-address-bar{padding:1rem 1.8rem}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+  footer{padding:4rem 1.8rem 2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">West End <span>Cuts</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Our Barbers</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#booking" class="nav-book">Book Now</a>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">West End · Allentown, PA · Men's Barbershop</p>
+    <h1>The Cut<br>You <em>Deserve</em></h1>
+    <p class="hero-sub">Classic men's cuts, modern precision — and a complimentary cold drink while you wait. Allentown's premier men's barbershop.</p>
+    <div class="hero-cta">
+      <a href="#booking" class="btn-primary">Book an Appointment</a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">5★</div><div class="stat-label">Google Rating</div></div>
+    <div><div class="stat-num">Free</div><div class="stat-label">Drinks on Us</div></div>
+    <div><div class="stat-num">Walk</div><div class="stat-label">-ins Welcome</div></div>
+  </div>
+  <div class="pole-line"></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip"><div class="marquee-inner">
+  <span>Classic Cuts</span><span>Fades &amp; Tapers</span><span>Hot Towel Shaves</span><span>Beard Trims</span><span>Straight Razor</span><span>Free Cold Drinks</span><span>Walk-ins Welcome</span><span>Allentown PA</span>
+  <span>Classic Cuts</span><span>Fades &amp; Tapers</span><span>Hot Towel Shaves</span><span>Beard Trims</span><span>Straight Razor</span><span>Free Cold Drinks</span><span>Walk-ins Welcome</span><span>Allentown PA</span>
+</div></div>
+
+<!-- GOOGLE BADGE BAR -->
+<div class="g-badge-bar">
+  <div class="g-badge">
+    <div class="g-logo"><span class="gc">G</span><span class="gc">o</span><span class="gc">o</span><span class="gc">g</span><span class="gc">l</span><span class="gc">e</span></div>
+    <div>
+      <div class="g-stars-row"><div class="g-stars">★★★★★</div><div class="g-num">5.0</div></div>
+      <div class="g-count">Google Reviews · Allentown, PA</div>
+    </div>
+  </div>
+  <div class="g-badge-info">
+    <strong>123 Main St, Allentown, PA 18104</strong><br>
+    West End Neighbourhood · Walk-ins Welcome
+  </div>
+  <div class="pill">🥤 Free Soda · Water · Kids Juice</div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-img">
+    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&q=80&fit=crop" alt="Barber at work at West End Cuts Allentown">
+    <div class="about-img-overlay"></div>
+  </div>
+  <div class="about-text">
+    <p class="section-eyebrow">Our Story</p>
+    <h2>More than a haircut.<br><strong>A tradition.</strong></h2>
+    <div style="width:40px;height:2px;background:var(--gold);margin:1.8rem 0"></div>
+    <p>West End Cuts is rooted in the heart of Allentown's historic West End on Main Street. We built this shop on a simple idea: every person who sits in our chair deserves top-tier skill and genuine hospitality.</p>
+    <p>From precision fades to classic taper cuts and straight razor shaves, our barbers bring years of real craft to every visit. And while you're here — grab a cold soda, water, or juice on us. No rush. Just a great cut.</p>
+    <p style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;margin-top:.5rem">"Best shop in the West End — and the cold drink seals the deal."</p>
+    <div style="width:40px;height:2px;background:var(--gold);margin:1.8rem 0"></div>
+    <div class="about-detail">📍 <a href="#" target="_blank">123 Main St, Allentown, PA 18104</a></div>
+    <div class="about-detail">📞 <a href="tel:+15551234567">(555) 123-4567</a></div>
+    <div class="about-detail">🥤 Complimentary soda, water &amp; kids juice every visit</div>
+    <div class="about-detail">💳 All major cards accepted · Walk-ins welcome</div>
+  </div>
+</section>
+
+<!-- SERVICES WITH PHOTOS -->
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="section-eyebrow">What We Offer</p>
+    <h2>Our <span>Services</span></h2>
+    <p>Every cut comes with a complimentary soda, water, or kids juice</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&q=80&fit=crop" alt="Signature haircut">
+        <div class="svc-img-overlay"></div>
+      </div>
+      <div class="svc-body">
+        <h3>Signature Cut</h3>
+        <p>Precision haircut tailored to your face shape and lifestyle. Consultation, cut, and styled finish by an expert hand.</p>
+        <div class="service-price">$25 <small>Starting at</small></div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1599351431613-18ef1fdd27e1?w=600&q=80&fit=crop" alt="Fade and taper haircut">
+        <div class="svc-img-overlay"></div>
+      </div>
+      <div class="svc-body">
+        <h3>Fade &amp; Taper</h3>
+        <p>From skin fades to high tapers — clean, crisp, and blended to perfection. Our most requested style.</p>
+        <div class="service-price">$30 <small>Starting at</small></div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=600&q=80&fit=crop" alt="Hot towel straight razor shave">
+        <div class="svc-img-overlay"></div>
+      </div>
+      <div class="svc-body">
+        <h3>Straight Razor Shave</h3>
+        <p>Traditional hot towel shave with straight razor technique. Steam, hot lather, and cool towel finish.</p>
+        <div class="service-price">$35 <small>Starting at</small></div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1534297635766-a262cdcb8ee4?w=600&q=80&fit=crop" alt="Beard trim and shape">
+        <div class="svc-img-overlay"></div>
+      </div>
+      <div class="svc-body">
+        <h3>Beard Trim &amp; Shape</h3>
+        <p>Detailed beard sculpting with straight razor edge work, hot towel, and beard oil finish. Sharp every time.</p>
+        <div class="service-price">$20 <small>Starting at</small></div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80&fit=crop" alt="Kids haircut">
+        <div class="svc-img-overlay"></div>
+      </div>
+      <div class="svc-body">
+        <h3>Kids Cuts</h3>
+        <p>Patient, friendly barbers who make it fun for kids of all ages. No fuss, great results — juice box included.</p>
+        <div class="service-price">$18 <small>Starting at</small></div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600&q=80&fit=crop" alt="Shape up and edge">
+        <div class="svc-img-overlay"></div>
+      </div>
+      <div class="svc-body">
+        <h3>Shape Up &amp; Edge</h3>
+        <p>The in-between clean-up — neck, sideburns, ears, and hairline. Stay looking fresh between full cuts.</p>
+        <div class="service-price">$15 <small>Starting at</small></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <p class="section-eyebrow">Our Work</p>
+    <h2>Fresh Cuts, <span>Every Chair</span></h2>
+  </div>
+  <div class="cuts-grid">
+    <div class="cut-item wide"><img src="https://images.unsplash.com/photo-1599351431613-18ef1fdd27e1?w=900&q=85&fit=crop" alt="Skin fade"><div class="cut-label"><span>Skin Fade</span></div></div>
+    <div class="cut-item"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=500&q=85&fit=crop" alt="Classic taper"><div class="cut-label"><span>Classic Taper</span></div></div>
+    <div class="cut-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&q=85&fit=crop" alt="Precision cut"><div class="cut-label"><span>Precision Cut</span></div></div>
+    <div class="cut-item"><img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=500&q=85&fit=crop" alt="Low fade with beard"><div class="cut-label"><span>Low Fade + Beard</span></div></div>
+    <div class="cut-item"><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=500&q=85&fit=crop" alt="Hot towel shave"><div class="cut-label"><span>Hot Towel Shave</span></div></div>
+    <div class="cut-item wide"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=900&q=85&fit=crop" alt="Barber at work"><div class="cut-label"><span>The Craft</span></div></div>
+  </div>
+</section>
+
+<!-- BARBERS -->
+<section class="barbers" id="team">
+  <div class="section-header">
+    <p class="section-eyebrow">The Team</p>
+    <h2>Meet Your <span>Barbers</span></h2>
+  </div>
+  <div class="barbers-grid">
+    <div class="barber-card">
+      <img class="barber-img" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80&fit=crop&crop=faces" alt="Marcus — Master Barber">
+      <div class="barber-info">
+        <div class="barber-name">Marcus R.</div>
+        <span class="barber-role">Master Barber · Owner</span>
+        <p class="barber-spec">Fades, tapers, classic cuts · 15+ years experience</p>
+      </div>
+    </div>
+    <div class="barber-card">
+      <img class="barber-img" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&q=80&fit=crop&crop=faces" alt="Jordan — Senior Barber">
+      <div class="barber-info">
+        <div class="barber-name">Jordan T.</div>
+        <span class="barber-role">Senior Barber</span>
+        <p class="barber-spec">Skin fades, beard sculpting, straight razor work</p>
+      </div>
+    </div>
+    <div class="barber-card">
+      <img class="barber-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&q=80&fit=crop&crop=faces" alt="Ray — Licensed Barber">
+      <div class="barber-info">
+        <div class="barber-name">Ray V.</div>
+        <span class="barber-role">Licensed Barber</span>
+        <p class="barber-spec">Kids cuts, hot towel shaves, shape ups &amp; edge work</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-header">
+    <div>
+      <p class="section-eyebrow">What Allentown Says</p>
+      <h2>Google <span>Reviews</span></h2>
+    </div>
+    <div class="google-overall">
+      <div class="big-num">5.0</div>
+      <div class="stars-stack">
+        <div class="g-stars">★★★★★</div>
+        <div class="g-logo" style="font-size:.78rem;gap:1px"><span class="gc">G</span><span class="gc">o</span><span class="gc">o</span><span class="gc">g</span><span class="gc">l</span><span class="gc">e</span></div>
+        <div class="rev-count">Allentown, PA · West End</div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="google-badge-corner"><span class="gc">G</span><span class="gc">o</span><span class="gc">o</span><span class="gc">g</span><span class="gc">l</span><span class="gc">e</span></div>
+      <div class="review-top"><div class="reviewer-avatar" style="background:#3a5a8a">JR</div><div class="reviewer-info"><div class="reviewer-name">Jason R.</div><div class="review-date">Local Guide · 3 weeks ago</div></div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Hands down the best barbershop in Allentown. The fade was perfect and they handed me a cold soda the second I walked in. That attention to detail carries right into the cut."</p>
+    </div>
+    <div class="review-card">
+      <div class="google-badge-corner"><span class="gc">G</span><span class="gc">o</span><span class="gc">o</span><span class="gc">g</span><span class="gc">l</span><span class="gc">e</span></div>
+      <div class="review-top"><div class="reviewer-avatar" style="background:#2a5a3a">MM</div><div class="reviewer-info"><div class="reviewer-name">Marcus M.</div><div class="review-date">2 months ago</div></div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Finally found my spot in Allentown. The barber took time to really listen, the shop is clean and sharp, and the free drinks are a nice touch. Crisp fade, clean lineup. I'm not going anywhere else."</p>
+    </div>
+    <div class="review-card">
+      <div class="google-badge-corner"><span class="gc">G</span><span class="gc">o</span><span class="gc">o</span><span class="gc">g</span><span class="gc">l</span><span class="gc">e</span></div>
+      <div class="review-top"><div class="reviewer-avatar" style="background:#6b3a2a">DT</div><div class="reviewer-info"><div class="reviewer-name">Diana T.</div><div class="review-date">3 months ago</div></div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Brought my husband and son and we both walked out looking great. They gave my son a juice box and he was thrilled. Kid-friendly, professional, and genuinely skilled barbers."</p>
+    </div>
+    <div class="review-card">
+      <div class="google-badge-corner"><span class="gc">G</span><span class="gc">o</span><span class="gc">o</span><span class="gc">g</span><span class="gc">l</span><span class="gc">e</span></div>
+      <div class="review-top"><div class="reviewer-avatar" style="background:#4a3a6b">CB</div><div class="reviewer-info"><div class="reviewer-name">Carlos B.</div><div class="review-date">4 months ago</div></div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Hot towel shave was unreal. Proper straight razor, cool towel finish — I left feeling like a new man. The cold water while I waited was a solid bonus. Real hospitality in a barbershop."</p>
+    </div>
+    <div class="review-card">
+      <div class="google-badge-corner"><span class="gc">G</span><span class="gc">o</span><span class="gc">o</span><span class="gc">g</span><span class="gc">l</span><span class="gc">e</span></div>
+      <div class="review-top"><div class="reviewer-avatar" style="background:#1a4a5a">TW</div><div class="reviewer-info"><div class="reviewer-name">Tyler W.</div><div class="review-date">5 months ago</div></div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Walk-in on a Saturday and was taken within 10 minutes. My barber was focused and precise, didn't rush at all. The fact that they offer free drinks while you wait makes the whole experience a step above."</p>
+    </div>
+    <div class="review-card">
+      <div class="google-badge-corner"><span class="gc">G</span><span class="gc">o</span><span class="gc">o</span><span class="gc">g</span><span class="gc">l</span><span class="gc">e</span></div>
+      <div class="review-top"><div class="reviewer-avatar" style="background:#5a4a1a">KL</div><div class="reviewer-info"><div class="reviewer-name">Kevin L.</div><div class="review-date">6 months ago</div></div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"West End Cuts on Main Street is what a barbershop should feel like. Great conversation, clean cuts every time. Told my whole crew. Three of them switched. The free soda helps too — small touch, big impression."</p>
+    </div>
+  </div>
+  <div class="reviews-cta">
+    <a href="#" target="_blank">Read All Google Reviews →</a>
+  </div>
+</section>
+
+<!-- BOOKING + HOURS -->
+<section class="booking" id="booking">
+  <div class="booking-text">
+    <p class="section-eyebrow">Come See Us</p>
+    <h2>Walk In or<br><span>Book Ahead</span></h2>
+    <p>Walk-ins always welcome. Book ahead to lock in your preferred barber. We'll have a cold drink ready when you arrive.</p>
+    <a class="booking-phone" href="tel:+15551234567">(555) 123-4567</a>
+    <a href="tel:+15551234567" class="btn-primary">Call to Book Now</a>
+  </div>
+  <div class="booking-right">
+    <div class="booking-hours">
+      <h4>Hours of Operation</h4>
+      <div class="hours-row closed"><span class="day">Monday</span><span class="time">Closed</span></div>
+      <div class="hours-row"><span class="day">Tuesday</span><span>9:00 AM – 6:00 PM</span></div>
+      <div class="hours-row"><span class="day">Wednesday</span><span>9:00 AM – 6:00 PM</span></div>
+      <div class="hours-row"><span class="day">Thursday</span><span>9:00 AM – 6:00 PM</span></div>
+      <div class="hours-row"><span class="day">Friday</span><span>9:00 AM – 7:00 PM</span></div>
+      <div class="hours-row"><span class="day">Saturday</span><span>8:00 AM – 5:00 PM</span></div>
+      <div class="hours-row closed"><span class="day">Sunday</span><span class="time">Closed</span></div>
+      <p style="font-size:.75rem;color:var(--mid);margin-top:1rem">Walk-ins welcome · 🥤 Free soda, water &amp; kids juice always available</p>
+    </div>
+    <div>
+      <p class="find-us-head">Find Us</p>
+      <p style="font-size:.9rem;color:var(--light);line-height:1.9">123 Main St<br>Allentown, PA 18104<br><br><a href="tel:+15551234567" style="color:var(--gold);text-decoration:none">(555) 123-4567</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div id="contact">
+  <div class="map-address-bar">
+    <span class="addr">📍 123 Main St, Allentown, PA 18104 — West End Neighbourhood</span>
+    <a href="#" target="_blank" class="dir-btn">Get Directions →</a>
+  </div>
+  <iframe class="map-embed"
+    src="https://maps.google.com/maps?q=Allentown,PA&z=13&output=embed"
+    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+    title="West End Cuts — 123 Main St Allentown PA 18104"></iframe>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">West End <span>Cuts</span></a>
+      <p class="footer-tagline">"The neighborhood chair where everyone feels at home."</p>
+      <div style="margin-top:1.4rem"><div class="pill" style="display:inline-flex">🥤 Free Soda · Water · Kids Juice</div></div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Signature Cut</a></li>
+        <li><a href="#services">Fade &amp; Taper</a></li>
+        <li><a href="#services">Straight Razor Shave</a></li>
+        <li><a href="#services">Beard Trim</a></li>
+        <li><a href="#services">Kids Cuts</a></li>
+        <li><a href="#services">Shape Up &amp; Edge</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#team">Our Barbers</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Directions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>123 Main St<br>Allentown, PA 18104</p>
+      <p style="margin-top:.8rem"><a href="tel:+15551234567" style="color:var(--gold);text-decoration:none">(555) 123-4567</a></p>
+      <div style="margin-top:.8rem;display:flex;align-items:center;gap:.5rem">
+        <div class="g-stars" style="font-size:.8rem">★★★★★</div>
+        <span style="font-size:.75rem;color:var(--mid)">Google Reviews</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 West End Cuts · 123 Main St, Allentown, PA 18104</p>
+    <div class="footer-social">
+      <a href="#" title="Facebook">fb</a>
+      <a href="#" target="_blank" title="Google">g</a>
+      <a href="#" title="Instagram">ig</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}}),{threshold:.08});
+document.querySelectorAll('.service-card,.review-card,.cut-item,.barber-card').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(22px)';
+  el.style.transition='opacity .5s ease,transform .5s ease';
+  io.observe(el);
+});
+</script>
+<a href="/#work" id="dwp-demo-pill" style="position:fixed;left:14px;bottom:14px;z-index:99999;display:flex;align-items:center;gap:8px;background:#041f2d;color:#fff;text-decoration:none;font:600 13px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:10px 14px;border-radius:22px;box-shadow:0 6px 20px rgba(0,0,0,.35);border:1px solid rgba(0,180,216,.4)">← <span>Demo by <b style="color:#00b4d8">Digital World Pro</b></span></a>
+</body>
+</html>
